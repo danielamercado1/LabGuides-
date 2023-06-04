@@ -3,7 +3,7 @@
     <div class="card mt-4 text-center">
       <div class="card-header">
         <h1 class="h4">
-            Account Register 
+            Registrar Usuario 
         </h1>
       
       </div>
@@ -21,6 +21,27 @@
           </div>
           <div class="form-group">
             <input type="password" class="form-control" name="confirm_password" placeholder="Confirm Password" value="{{confirm_password}}">
+          </div>
+           </div>
+          <div class="form-group">
+            <select class="form-control" name="course">
+              <option value="" selected disabled>Selecciona un curso</option>
+              <option value="Circuitos I">Circuitos I</option>
+              <option value="Circuitos II">Circuitos II</option>
+              <option value="Electronica I">Electronica I</option>
+              <option value="Electronica II">Electronica II</option>
+              <option value="Electronica III">Electronica III</option>
+              <option value="Diseño Digital I">Diseño Digital I</option>
+              <option value="Diseño Digital II">Diseño Digital II</option>
+            </select>
+          </div>
+          <div class="form-group">
+              <label for="perfil">Perfil del registro</label>
+              <select class="form-control" name="perfil" id="perfil">
+                <option value="" disabled selected>Selecciona un perfil</option>
+                <option value="Docente">Docente</option>
+                <option value="Estudiante">Estudiante</option>
+              </select>
           </div>
           <div class="form-group">
             <input type="claveregistro" class="form-control" name="claveregistro" placeholder="Clave para registro" value="{{claveregistro}}">

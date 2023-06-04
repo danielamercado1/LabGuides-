@@ -1,6 +1,6 @@
 # plantillamanglar
-Plantilla que posee menú lateral, login de usuario, conexión a MongoDB
+Plantilla LabGuides+ que posee menú lateral, login de usuario, conexión a MongoDB
 
 #instalación
-Realice Clonación y escriba: npm install
+Realice Clonación y escriba: npm install, conecte a mongoDB
 para ejecutar: npm run dev 

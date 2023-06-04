@@ -12,16 +12,16 @@ usersCtrl.renderSignUpForm = (req, res) => {
 
 usersCtrl.singup = async (req, res) => {
   let errors = [];
-  const { name, email, password, confirm_password,claveregistro } = req.body;
+  const { name, email, password, confirm_password,course, claveregistro } = req.body;
   //clave de registro para no permitir registros no deseados
-  if (claveregistro != "Manglar2023") {
+  if (claveregistro != "Lablovers") {
     errors.push({ text: "Clave de registro no coincide" });
   }
   if (password != confirm_password) {
-    errors.push({ text: "Passwords do not match." });
+    errors.push({ text: "La clave ingresada es incorrecta." });
   }
-  if (password.length < 4) {
-    errors.push({ text: "Passwords must be at least 4 characters." });
+  if (password.length < 6) {
+    errors.push({ text: "La contraseña debe contener mas de 6 carácteres." });
   }
   if (errors.length > 0) {
     res.render("users/signup", {
@@ -36,14 +36,14 @@ usersCtrl.singup = async (req, res) => {
     // Look for email coincidence
     const emailUser = await User.findOne({ email: email });
     if (emailUser) {
-      req.flash("error_msg", "The Email is already in use.");
+      req.flash("error_msg", "El correo ya está en uso.");
       res.redirect("/users/signup");
     } else {
       // Saving a New User
-      const newUser = new User({ name, email, password });
+      const newUser = new User({ name, email, password, course });
       newUser.password = await newUser.encryptPassword(password);
       await newUser.save();
-      req.flash("success_msg", "You are registered.");
+      req.flash("success_msg", "El registro se ha realizado con éxito.");
       res.redirect("/users/signin");
     }
   }
@@ -61,7 +61,7 @@ usersCtrl.signin = passport.authenticate("local", {
 
 usersCtrl.logout = (req, res) => {
   req.logout();
-  req.flash("success_msg", "You are logged out now.");
+  req.flash("success_msg", "Haz finalizado tu sesión.");
   res.redirect("/users/signin");
 };
 
