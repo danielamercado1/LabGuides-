@@ -13,4 +13,12 @@ indexCtrl.renderAbout = (req, res) => {
 indexCtrl.renderHome = (req, res) => {
   res.render('home');
 };
+
+indexCtrl.renderMylabs= (req, res) => {
+    res.render('Mylabs');
+};
+
+indexCtrl.renderhisto= (req, res) => {
+  res.render('histo');
+};
 module.exports = indexCtrl;

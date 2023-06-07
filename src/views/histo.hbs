@@ -1,0 +1,67 @@
+<<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Historial de archivos PDF</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Historial de archivos PDF</h1>
+  
+    {{#if pdfHistory.length}}
+      <ul>
+        {{#each pdfHistory}}
+          <li>
+            <div class="file-info">
+              <span class="filename">{{this}}</span>
+              <span class="date">Fecha: {{formatDate created_at}}</span>
+            </div>
+            <div class="actions">
+              <button class="btn-delete" data-filename="{{this}}">Eliminar</button>
+              <a href="#" class="btn-download" data-filename="{{this}}" download>Descargar</a>
+            </div>
+          </li>
+        {{/each}}
+      </ul>
+      <button id="btn-clear" class="btn-clear">Vaciar historial</button>
+    {{else}}
+      <p>No hay archivos PDF en el historial.</p>
+    {{/if}}
+  </div>
+
+  <script>
+    const deleteButtons = document.querySelectorAll('.btn-delete');
+    const clearButton = document.getElementById('btn-clear');
+    const downloadLinks = document.querySelectorAll('.btn-download');
+
+    deleteButtons.forEach(button => {
+      button.addEventListener('click', function() {
+        const filename = this.getAttribute('data-filename');
+        // Lógica para eliminar el archivo PDF con el nombre "filename" del historial
+        alert(`Eliminando ${filename}`);
+      });
+    });
+
+    clearButton.addEventListener('click', function() {
+      // Lógica para vaciar todo el historial de archivos PDF
+      alert('Vaciando el historial');
+    });
+
+    downloadLinks.forEach(link => {
+      link.addEventListener('click', function(event) {
+        const filename = this.getAttribute('data-filename');
+        // Lógica para descargar el archivo PDF con el nombre "filename"
+        alert(`Descargando ${filename}`);
+        event.preventDefault();
+      });
+    });
+
+    // Función de ayuda para formatear la fecha
+    Handlebars.registerHelper('formatDate', function(date) {
+      const options = { year: 'numeric', month: 'long', day: 'numeric' };
+      return new Date(date).toLocaleDateString('en-US', options);
+    });
+  </script>
+</body>
+</html>
